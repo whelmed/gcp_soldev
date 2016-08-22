@@ -1,0 +1,7 @@
+service_account.json
+client_secrets.json
+*.pyc
+lib/*
+venv
+*.json
+.DS_Store

@@ -1,0 +1,6 @@
+application: ca-gcp-developer
+
+dispatch:
+
+  - url: "*/greeter/*"
+    module: greeter

@@ -1,0 +1,58 @@
+application: ca-gcp-developer
+runtime: python27
+api_version: 1
+threadsafe: true
+version: v2
+
+handlers:
+  # used for the initialization of the app. And then could be removed.
+  - url: /static/images/init/(.*\.(jpeg|jpg))$
+    static_files: static/\1
+    upload: static/init/.*\.(jpeg|jpg)$
+    application_readable: true
+
+  # So we can have our static directory uploaded and available.
+  # Don't put anything in this folder that isn't public.
+  - url: /static
+    static_dir: static
+
+  # Initializes the app. Run once, and then can be removed.
+  - url: /init/.*
+    script: init.app
+
+  # The user's profile
+  - url: /me/.*
+    script: me.app
+    login: required
+
+  # A list of files from drive
+  - url: /from-drive/.*
+    script: fromdrive.app
+    login: required
+
+  # The image uploader
+  - url: /images/new/
+    script: upload.app
+    login: required
+
+  # The module that handles viewing images and categories
+  - url: /images/.*
+    script: images.app
+
+  # The default route, also the fall back router
+  # Used for the home page currently
+  - url: /.*
+    script: main.app
+
+
+# App Engine provided libraries
+libraries:
+  - name: pycrypto
+    version: 2.6
+
+# Any file patterns to skip when uploading to App Engine
+skip_files:
+  - ^(.*/)?.*\.py[co]$
+
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: service_account.json

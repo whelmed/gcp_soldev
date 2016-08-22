@@ -1,0 +1,6 @@
+cron:
+
+  - description: sales offers mail
+    url: /tasks/email-user/
+    schedule: every monday 09:00
+    timezone: America/New_York

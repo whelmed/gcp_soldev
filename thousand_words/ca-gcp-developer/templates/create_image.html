@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+
+		<div class="row">
+			<div class="col-md-4">
+				<h1>Share</h1>
+			</div>
+		</div>
+		<form action="/images/new/" method="post" enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<input type="file" name="file" class="form-control" placeholder="Image">
+							</div>
+							<div class="form-group">
+								<select name="cat_id" placeholder="Category" class="form-control">
+									<option value="0">Category</option>
+								{% for category in context.categories %}
+								<option value="{{category.key.urlsafe()}}">{{ category.name }}</option>
+								{% endfor %}
+								</select>
+
+							</div>
+
+							<div class="form-group">
+								<textarea name="details" cols="30" rows="7" class="form-control" placeholder="Details"></textarea>
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-primary btn-md" value="Send Message">
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+
+{% endblock %}

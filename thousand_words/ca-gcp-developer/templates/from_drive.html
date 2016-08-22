@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="fh5co-narrow-content">
+  <div class="row">
+    <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+
+    {% if context.files %}
+      {% for file in context.files %}
+        <br>
+        <span>{{file.name}}</span>
+      {% endfor %}
+    {% else %}
+    <h2>Coming Soon...Upload your images from Google Drive!</h2>
+    <a href="/from-drive/files/">List Files From Drive</a>
+    {% endif %}
+
+  </div>
+
+{% endblock %}

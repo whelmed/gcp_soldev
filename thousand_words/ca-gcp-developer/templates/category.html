@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="fh5co-gallery">
+
+		{% for image in context.images %}
+		<a class="gallery-item" href="/images/{{image.key.urlsafe()}}">
+			<img src="{{context.base_url}}{{image.url}}" >
+			<span class="overlay">
+				<span>{{image.details | truncate(10)}}</span>
+			</span>
+		</a>
+		{% endfor %}
+
+	</div>
+
+
+	{% include "partials/counters.html" %}
+
+	{% include "partials/express.html" %}
+
+{% endblock %}

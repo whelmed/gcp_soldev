@@ -1,0 +1,7 @@
+application: ca-gcp-developer
+
+
+dispatch:
+
+  - url: "*/tasks/*"
+    module: tasks

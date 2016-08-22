@@ -1,0 +1,14 @@
+application: ca-gcp-developer
+runtime: python27
+api_version: 1
+threadsafe: true
+version: v1
+
+handlers:
+  - url: /.*
+    script: main.app
+
+
+skip_files:
+  - venv/.*
+  - ^(.*/)?.*\.py[co]$

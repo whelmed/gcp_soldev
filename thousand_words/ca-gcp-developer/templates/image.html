@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="fh5co-gallery">
+
+		<img style="width: 100%" src="{{context.base_url}}{{context.image.url}}" />
+		<a id="short-url" href="#">Get Short URL</a>
+
+		<div id="short-url-results">
+
+		</div>
+
+		{% if context.image.tags %}
+			{% for tag in context.image.tags %}
+				<span class="badge">{{tag}}</span>
+			{% endfor %}
+		{% endif %}
+
+
+	</div>
+
+
+
+ {% include "partials/express.html" %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+ $(document).ready(function() {
+	 $('#short-url').on('click', function() {
+
+		 $.ajax({
+			 dataType: "json",
+			 url: '/images/short-url/',
+			 data: { 'url': window.location.href },
+			 success: function(res) {
+				 console.log(res)
+				 $('#short-url-results').html('<div class="alert alert-success" role="alert"><a href="' + res.id + '">' + res.id +'</a></div>');
+			 }
+		 });
+	 });
+ });
+</script>
+{% endblock %}

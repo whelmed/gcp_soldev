@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="fh5co-narrow-content">
+
+
+		<div class="row">
+			<div class="col-md-8">
+			{% if context.user %}
+				<span>Welcome, {{ context.user.nickname() }}</span>
+				<br>
+				<span>Admin: {{ context.is_admin }}</span>
+				<br>
+				<span>
+					<a href="{{ context.logout }}">Log out</a>
+				</span>
+			{% else %}
+
+			{% endif %}
+			</div>
+		</div>
+
+	</div>
+
+
+	 {% include "partials/express.html" %}
+
+{% endblock %}
